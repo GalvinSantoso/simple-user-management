@@ -1,0 +1,35 @@
+# Dependencies
+node_modules
+package-lock.json
+
+# Build outputs
+.next
+out
+build
+dist
+
+# Generated files
+prisma
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Ignore a specific file
+implementation_plan.md
+
+# Ignore generated files
+lib/blocks/registry.ts
