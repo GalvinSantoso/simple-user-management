@@ -11,17 +11,17 @@ interface NavigationTitleProps {
 const NavigationTitle = ({ title, desc, backUrl }: NavigationTitleProps) => {
   return (
     <div className="flex items-center gap-4">
-      <Link
-        className="p-2 border-2 border-primary rounded-full transition duration-100 hover:bg-gray-100"
-        href="/"
-      >
-        <ArrowLeft />
-      </Link>
+      {!!backUrl && (
+        <Link
+          className="p-2 border-2 border-primary rounded-full transition duration-100 hover:bg-gray-100"
+          href={backUrl}
+        >
+          <ArrowLeft />
+        </Link>
+      )}
       <div className="space-y-1">
-        <h3 className="text-brand-primary">Add Form</h3>
-        <p className="text-foreground-200">
-          A simple form template to add new records to the system.
-        </p>
+        <h3 className="text-foreground text-lg md:text-xl xl:text-2xl">{title}</h3>
+        <p className="text-muted-foreground text-sm md:text-base">{desc}</p>
       </div>
     </div>
   );

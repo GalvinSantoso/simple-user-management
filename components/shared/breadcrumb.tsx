@@ -1,3 +1,4 @@
+import { div } from "framer-motion/client";
 import {
   Breadcrumb as BreadcrumbContainer,
   BreadcrumbItem,
@@ -21,14 +22,16 @@ const Breadcrumb = ({ items }: BreadcrumbProps) => {
         {items.map(({ name, link }, i) => {
           const isLastItem = i == items.length - 1;
           return (
-            <BreadcrumbItem key={name}>
-              {isLastItem ? (
-                <BreadcrumbPage className="text-primary font-semibold">{name}</BreadcrumbPage>
-              ) : (
-                <BreadcrumbLink href={link}>{name}</BreadcrumbLink>
-              )}
+            <div className="flex items-center gap-1.5" key={name}>
+              <BreadcrumbItem>
+                {isLastItem ? (
+                  <BreadcrumbPage className="text-primary font-semibold">{name}</BreadcrumbPage>
+                ) : (
+                  <BreadcrumbLink href={link}>{name}</BreadcrumbLink>
+                )}
+              </BreadcrumbItem>
               {!isLastItem && <BreadcrumbSeparator />}
-            </BreadcrumbItem>
+            </div>
           );
         })}
       </BreadcrumbList>
