@@ -1,9 +1,10 @@
+import { Metadata } from "next";
+
 import Breadcrumb from "@/components/shared/breadcrumb";
 import NavigationTitle from "@/components/shared/navigation-title";
 import UserInformation from "@/features/user-detail/ui/user-information";
 import UserTodos from "@/features/user-detail/ui/user-todos";
 import UserPosts from "@/features/user-detail/ui/user-posts";
-import { Metadata } from "next";
 import { getUserDetail } from "@/features/user-detail/actions/actions";
 
 export async function generateMetadata({
@@ -18,7 +19,7 @@ export async function generateMetadata({
 
     return {
       title: `${user.name} — User Detail`,
-      description: `Profile and activity for ${user.name} (@${user.username})`,
+      description: `Profile and activity for ${user.name} (${user.username})`,
     };
   } catch {
     return { title: "User Detail" };

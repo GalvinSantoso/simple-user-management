@@ -1,8 +1,13 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { Metadata } from "next";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "UserOps — Team & User Management Dashboard",
+  description: "Manage users and teams with visual insights, post logs, and task tracking.",
+};
 
 export default function Home() {
   return (

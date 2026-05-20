@@ -1,7 +1,14 @@
+import { Metadata } from "next";
+
 import Breadcrumb from "@/components/shared/breadcrumb";
 import NavigationTitle from "@/components/shared/navigation-title";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import UserTable from "@/features/users/ui/user-table";
+
+export const metadata: Metadata = {
+  title: "User List — UserOps",
+  description: "A comprehensive dashboard of all registered application users.",
+};
 
 const UsersPage = () => {
   return (
