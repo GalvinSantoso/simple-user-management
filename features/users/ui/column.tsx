@@ -1,9 +1,10 @@
-import { ColumnDef } from "@tanstack/react-table";
-import { UserTableData } from "../schema";
 import Link from "next/link";
+import { Eye, SquareArrowUpRight } from "lucide-react";
+import { ColumnDef } from "@tanstack/react-table";
+
 import { SortableHeader } from "@/components/shared/table/sortable-header";
 import { Badge } from "@/components/ui/badge";
-import { Eye, SquareArrowUpRight } from "lucide-react";
+import { UserTableData } from "../schema";
 
 export const userColumns = (): ColumnDef<UserTableData>[] => [
   {

@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useUserPosts } from "../hooks/useUserPosts";
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
+
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { toast } from "sonner";
 import ErrorState from "@/components/shared/error-state";
+import { useUserPosts } from "../hooks/useUserPosts";
 
 interface UserPostsProps {
   userId: string;

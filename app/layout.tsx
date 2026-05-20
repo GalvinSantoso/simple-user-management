@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 import { QueryProvider } from "@/components/providers/QueryProviders";
 import Footer from "@/components/shared/footer";
@@ -37,7 +38,6 @@ export default function RootLayout({
             <Navbar />
             <main>{children}</main>
           </div>
-          <Footer />
           <Toaster richColors position="top-right" />
         </body>
       </QueryProvider>

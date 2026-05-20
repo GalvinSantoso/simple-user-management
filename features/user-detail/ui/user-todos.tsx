@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useUserTodos } from "../hooks/useUserTodos";
+import { CheckCircle2, Circle } from "lucide-react";
+import { toast } from "sonner";
+
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { CheckCircle2, Circle } from "lucide-react";
-import { toast } from "sonner";
 import ErrorState from "@/components/shared/error-state";
+import { useUserTodos } from "../hooks/useUserTodos";
 
 interface UserTodosProps {
   userId: string;
