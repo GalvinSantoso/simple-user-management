@@ -74,6 +74,10 @@ export const getUsersTableData = async ({
     throw new Error("Failed to fetch user data. Please check your connection and try again.");
   });
 
+  if (!usersRes.ok || !postsRes.ok || !todosRes.ok) {
+    throw new Error("Failed to retrieve user operations dashboard data. Non-200 response.");
+  }
+
   const userPostTodo = await Promise.all([
     usersRes.json() as Promise<User[]>,
     postsRes.json() as Promise<Post[]>,

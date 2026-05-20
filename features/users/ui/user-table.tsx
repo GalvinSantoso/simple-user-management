@@ -8,6 +8,7 @@ import { userColumns } from "./column";
 import { Table } from "@/components/shared/table";
 import UserCardList from "./user-card-list";
 import { toast } from "sonner";
+import { useDebounce } from "@/libs/hooks/useDebounce";
 
 const UserTable = () => {
   const [search, setSearch] = useState("");
@@ -18,6 +19,8 @@ const UserTable = () => {
     pageSize: 5,
   });
 
+  const debouncedSearch = useDebounce(search, 300);
+
   const {
     data: users,
     isLoading: isUsersLoading,
@@ -25,7 +28,7 @@ const UserTable = () => {
   } = useUserTable({
     page: pagination.pageIndex + 1,
     pageSize: pagination.pageSize,
-    search,
+    search: debouncedSearch,
     sorting,
     filter,
   });

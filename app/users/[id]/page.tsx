@@ -29,7 +29,7 @@ const UserDetailPage = async ({ params }: { params: Promise<{ id: string }> }) =
   const { id } = await params;
 
   return (
-    <div className="container mx-auto grid grid-cols-1 py-8 gap-y-4 px-4 sm:px-0">
+    <div className="container mx-auto grid grid-cols-1 py-8 gap-y-4 px-4 md:px-0">
       <header className="space-y-3">
         <Breadcrumb
           items={[

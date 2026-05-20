@@ -5,7 +5,7 @@ import UserTable from "@/features/users/ui/user-table";
 
 const UsersPage = () => {
   return (
-    <div className="container mx-auto grid grid-cols-1 py-8 gap-y-4">
+    <div className="container mx-auto grid grid-cols-1 py-8 gap-y-4 px-4 md:px-0">
       <header className="space-y-3">
         <Breadcrumb
           items={[

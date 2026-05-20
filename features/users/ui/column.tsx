@@ -20,12 +20,22 @@ export const userColumns = (): ColumnDef<UserTableData>[] => [
     header: ({ column }) => <SortableHeader column={column} label="Name" />,
     accessorKey: "name",
     size: 250,
+    cell: ({ row }) => (
+      <span className="block truncate max-w-[220px]" title={row.original.name}>
+        {row.original.name}
+      </span>
+    ),
   },
   {
     id: "email",
     header: ({ column }) => <SortableHeader column={column} label="Email" />,
     accessorKey: "email",
     size: 250,
+    cell: ({ row }) => (
+      <span className="block truncate max-w-[220px]" title={row.original.email}>
+        {row.original.email}
+      </span>
+    ),
   },
   {
     id: "website",

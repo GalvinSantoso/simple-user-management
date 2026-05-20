@@ -24,7 +24,7 @@ const UserCard = ({ user, index }: UserCardProps) => {
             </span>
             <h4 className="text-sm font-bold text-foreground line-clamp-1">{name}</h4>
           </div>
-          <p className="text-xs text-muted-foreground">{email}</p>
+          <p className="text-xs text-muted-foreground truncate">{email}</p>
         </div>
         <Link href={`/users/${userId}`}>
           <Badge
