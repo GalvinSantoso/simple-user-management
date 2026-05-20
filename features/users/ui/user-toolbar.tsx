@@ -41,7 +41,7 @@ const UserToolbar = ({ search, onSearchChange, onFilterChange }: UserToolbarProp
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:gap-4">
       <div className="relative w-full sm:max-w-xs">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <Input

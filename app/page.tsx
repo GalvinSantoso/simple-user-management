@@ -24,16 +24,10 @@ export default function Home() {
           and data-driven insights to mitigate risk and ensure compliance.
         </p>
       </div>
-      
+
       <div className="flex flex-col sm:flex-row items-center gap-4">
         <Link href="/users">
           <Button size="xl">Get Started</Button>
-        </Link>
-        <Link href="#">
-          <Button size="xl" variant="outline">
-            Documentation
-            <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </Button>
         </Link>
       </div>
     </section>

@@ -1,11 +1,13 @@
 "use client";
 
 import { PaginationState, SortingState } from "@tanstack/react-table";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUserTable } from "../hooks/useUserTable";
 import UserToolbar from "./user-toolbar";
 import { userColumns } from "./column";
 import { Table } from "@/components/shared/table";
+import UserCardList from "./user-card-list";
+import { toast } from "sonner";
 
 const UserTable = () => {
   const [search, setSearch] = useState("");
@@ -25,8 +27,16 @@ const UserTable = () => {
     pageSize: pagination.pageSize,
     search,
     sorting,
-    filter
+    filter,
   });
+
+  useEffect(() => {
+    if (error) {
+      toast.error("Failed to load user list", {
+        description: error.message || "An error occurred while fetching users.",
+      });
+    }
+  }, [error]);
 
   const columns = userColumns();
 
@@ -37,18 +47,33 @@ const UserTable = () => {
         onSearchChange={(val: string) => setSearch(val.trim())}
         onFilterChange={(val: string[]) => setFilter(val ?? [])}
       />
-      <Table
-        data={users?.data ?? []}
-        columns={columns}
-        totalCount={users?.totalCount ?? 0}
-        pagination={pagination}
-        onPaginationChange={setPagination}
-        sorting={sorting}
-        onSortingChange={setSorting}
-        globalFilter={search}
-        onGlobalFilterChange={setSearch}
-        isLoading={isUsersLoading}
-      />
+
+      <div className="hidden md:block xl:block">
+        <Table
+          data={users?.data ?? []}
+          columns={columns}
+          totalCount={users?.totalCount ?? 0}
+          pagination={pagination}
+          onPaginationChange={setPagination}
+          sorting={sorting}
+          onSortingChange={setSorting}
+          globalFilter={search}
+          onGlobalFilterChange={setSearch}
+          isLoading={isUsersLoading}
+          error={error}
+        />
+      </div>
+
+      <div className="block md:hidden xl:hidden">
+        <UserCardList
+          data={users?.data ?? []}
+          totalCount={users?.totalCount ?? 0}
+          pagination={pagination}
+          onPaginationChange={setPagination}
+          isLoading={isUsersLoading}
+          error={error}
+        />
+      </div>
     </div>
   );
 };

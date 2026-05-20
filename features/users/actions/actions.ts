@@ -70,13 +70,17 @@ export const getUsersTableData = async ({
     fetch("https://jsonplaceholder.typicode.com/users", { next: { revalidate: 60 } }),
     fetch("https://jsonplaceholder.typicode.com/posts", { next: { revalidate: 60 } }),
     fetch("https://jsonplaceholder.typicode.com/todos", { next: { revalidate: 60 } }),
-  ]);
+  ]).catch(() => {
+    throw new Error("Failed to fetch user data. Please check your connection and try again.");
+  });
 
   const userPostTodo = await Promise.all([
     usersRes.json() as Promise<User[]>,
     postsRes.json() as Promise<Post[]>,
     todosRes.json() as Promise<Todo[]>,
-  ]);
+  ]).catch(() => {
+    throw new Error("Failed to parse user data response.");
+  });
 
   let usersTableData = convertUserData(userPostTodo);
 

@@ -15,7 +15,7 @@ const NavList = ({ items }: NavListProps) => {
   const pathname = usePathname();
 
   return (
-    <ul className="flex items-center gap-x-4">
+    <ul className="flex items-center gap-x-2 md:gap-x-4">
       {items.map(({ link, name }) => {
         const isActive = link == "/" ? pathname == "/" : pathname.startsWith(link);
 

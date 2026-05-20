@@ -19,6 +19,8 @@ import {
   TableRow,
 } from "../../ui/table";
 import PaginationControl from "./pagination-control";
+import { Skeleton } from "@/components/ui/skeleton";
+import ErrorState from "@/components/shared/error-state";
 
 interface TableProps<T> {
   data: T[];
@@ -35,6 +37,7 @@ interface TableProps<T> {
   onGlobalFilterChange: (value: string) => void;
 
   isLoading: boolean;
+  error?: Error | null;
 }
 
 const Table = <T,>({
@@ -51,6 +54,7 @@ const Table = <T,>({
   onGlobalFilterChange,
 
   isLoading,
+  error = null,
 }: TableProps<T>) => {
   const table = useReactTable({
     data,
@@ -70,6 +74,19 @@ const Table = <T,>({
     onGlobalFilterChange,
   });
 
+  if (error) {
+    return (
+      <div className="grid grid-cols-1 gap-y-4 py-8">
+        <ErrorState
+          title="Failed to Load Data"
+          description={
+            error.message || "An error occurred while loading the data. Please try again."
+          }
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 gap-y-4">
       <TableContainer>
@@ -87,7 +104,17 @@ const Table = <T,>({
           ))}
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
+          {isLoading ? (
+            Array.from({ length: pagination.pageSize }).map((_, i) => (
+              <TableRow key={`skeleton-${i}`}>
+                {columns.map((_, j) => (
+                  <TableCell key={`skeleton-cell-${i}-${j}`} className="py-4">
+                    <Skeleton className="h-4 w-[85%]" />
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                 {row.getVisibleCells().map((cell) => (
@@ -108,7 +135,7 @@ const Table = <T,>({
       </TableContainer>
       <div className="flex w-full items-center justify-between">
         <span className="text-sm text-muted-foreground">
-          Page {pagination.pageIndex + 1} of {Math.ceil(totalCount / pagination.pageSize)}
+          Page {pagination.pageIndex + 1} of {Math.ceil(totalCount / pagination.pageSize) || 1}
         </span>
 
         <PaginationControl

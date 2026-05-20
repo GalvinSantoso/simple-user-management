@@ -20,7 +20,7 @@ const NavigationTitle = ({ title, desc, backUrl }: NavigationTitleProps) => {
         </Link>
       )}
       <div className="space-y-1">
-        <h3 className="text-foreground text-lg md:text-xl xl:text-2xl">{title}</h3>
+        <h3 className="text-foreground font-bold text-lg md:text-xl xl:text-2xl">{title}</h3>
         <p className="text-muted-foreground text-sm md:text-base">{desc}</p>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { UserTableData } from "../schema";
 import Link from "next/link";
 import { SortableHeader } from "@/components/shared/table/sortable-header";
 import { Badge } from "@/components/ui/badge";
+import { Eye, SquareArrowUpRight } from "lucide-react";
 
 export const userColumns = (): ColumnDef<UserTableData>[] => [
   {
@@ -61,6 +62,21 @@ export const userColumns = (): ColumnDef<UserTableData>[] => [
           <Badge variant="secondary">{completed} Completed</Badge>
           <Badge variant="outline">{pending} Pending</Badge>
         </div>
+      );
+    },
+  },
+  {
+    id: "actions",
+    header: "Actions",
+    accessorKey: "actions",
+    cell: ({ row }) => {
+      const { userId } = row.original;
+      return (
+        <Link className="" href={`/users/${userId}`}>
+          <Badge variant="default" className="rounded-sm hover:opacity-80">
+            <SquareArrowUpRight className="w-4 aspect-square" />
+          </Badge>
+        </Link>
       );
     },
   },
